@@ -15,6 +15,7 @@ module.exports = {
       displayName: {
         type: Sequelize.STRING,
         allowNull: false,
+        field: 'display_name'
       },
       email: {
         type: Sequelize.STRING,
@@ -23,6 +24,18 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false, 
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('NOW()'),
+        field: 'created_at',
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('NOW()'),
+        field: 'updated_at',
       },
     });
   },
