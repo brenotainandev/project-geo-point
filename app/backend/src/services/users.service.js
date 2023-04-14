@@ -3,9 +3,9 @@ const StatusCode = require('../types/status.code.types');
 const errorGenerate = require('../utils/error.generate');
 
 const usersService = {
-  create: async ({ displayName, email, cryptoPassword }) => {
+  create: async ({ name, email, cryptoPassword }) => {
     const user = await User.create({
-      displayName,
+      name,
       email,
       password: cryptoPassword,
     });
@@ -20,7 +20,7 @@ const usersService = {
 
   getById: async (id) => {
     const user = await User.findByPk(id, {
-      attributes: ['id', 'displayName', 'email'],
+      attributes: ['id', 'name', 'email'],
     });
 
     if (user === null) throw errorGenerate('Usuário não Cadastrado', StatusCode.NOT_FOUND);

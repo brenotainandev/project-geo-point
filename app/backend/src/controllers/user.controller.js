@@ -6,14 +6,14 @@ const createToken = require('../utils/create.token');
 const userController = {
   signUp: async (req, res) => {
     try {
-      const { displayName, email, password } = req.body;
+      const { name, email, password } = req.body;
       const cryptoPassword = md5(password);
 
-      const { id } = await usersService.create({ displayName, email, cryptoPassword });
+      const { id } = await usersService.create({ name, email, cryptoPassword });
 
-      const token = createToken({ email, id, displayName });
+      const token = createToken({ email, id, name });
 
-      res.status(StatusCode.CREATE).json({ displayName, email, id, token });
+      res.status(StatusCode.CREATE).json({ name, email, id, token });
     } catch (error) {
       res.status(StatusCode.SERVER_ERROR).json({ message: error });
     }
@@ -29,6 +29,12 @@ const userController = {
     } catch (error) {
       res.status(StatusCode.SERVER_ERROR).json({ message: error });
     }
+  },
+
+  getUser: async (req, res) => {
+    const { name, email, id } = req.user;
+
+    res.status(StatusCode.CREATE).json({ name, email, id });
   },
 };
 

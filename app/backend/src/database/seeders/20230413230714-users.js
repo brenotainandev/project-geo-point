@@ -5,19 +5,19 @@ module.exports = {
     await queryInterface.bulkInsert('users', [
       {
         id: 1,
-        display_name: 'Breno Tainan',
+        name: 'Breno Tainan',
         email: 'breno.tainan@teste.com',
-        password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
-          // senha: secret_admin
+        password: '090245f477d118fde3e5fa4f7c150f1f',
+          // senha: breno123
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       {
         id: 2,
-        display_name: 'Maria Souza',
+        name: 'Maria Souza',
         email: 'maria.souza@teste.com',
-        password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
-          // senha: secret_admin
+        password: 'f8461b554d59b3014e8ff5165dc62fac',
+          // senha: maria123
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },

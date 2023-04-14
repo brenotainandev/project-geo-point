@@ -12,7 +12,7 @@ const createUserModel = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
     },
-    displayName: DataTypes.STRING,
+    name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
   }, {

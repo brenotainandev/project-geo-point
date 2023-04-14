@@ -12,10 +12,9 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      displayName: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-        field: 'display_name'
       },
       email: {
         type: Sequelize.STRING,
