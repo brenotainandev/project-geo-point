@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(true);
   const [logged, setLogged] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-
 
   const validateEmail = (email, password) => {
     const regex = /\S+@+\S+\.\S+/;
@@ -27,18 +28,19 @@ function LoginForm() {
 
   const handleClick = async () => {
     await axios
-      .post('http://localhost:3000/login', {
+      .post("http://localhost:3000/login", {
         email,
         password,
       })
       .then((response) => {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data));
 
-        navigate('/establishments');
+        navigate("/establishments");
       })
       .catch((err) => {
         console.log(err.response.data);
+        setErrorMessage(err.response.data.message);
         setLogged(false);
       });
   };
@@ -46,36 +48,60 @@ function LoginForm() {
   return (
     <>
       <form>
-        <input
-          label="Login"
-          placeholder="email@geopoint.com"
-          className="input-email"
-          onChange={ ({ target: { value } }) => setEmail(value) }
+        <img
+          className="mb-4 img-login"
+          src="https://icons.veryicon.com/png/o/miscellaneous/travel-flat-colorful-icon/maps-46.png"
+          alt=""
+          width="100"
+          height="100"
         />
-        <input
-          label="Senha"
-          placeholder="******"
-          className="input-senha"
-          type="password"
-          onChange={ ({ target: { value } }) => setPassword(value) }
-        />
+        <h1 className="h3 mb-3 fw-normal">Geo Ponto</h1>
+
+        <div className="form-floating mb-3">
+          <input
+            label="Login"
+            placeholder="email@geopoint.com"
+            className="input-email form-control"
+            onChange={({ target: { value } }) => setEmail(value)}
+          />
+          <label htmlFor="email-login">Usuario</label>
+        </div>
+
+        <div className="form-floating mb-3">
+          <input
+            label="Senha"
+            htmlFor="password-login"
+            placeholder="******"
+            className="input-senha form-control"
+            type="password"
+            onChange={({ target: { value } }) => setPassword(value)}
+          />
+          <label htmlFor="password-login">Senha</label>
+        </div>
+
         <button
-          onClick={ () => handleClick() }
-          className="botao-login"
+          onClick={() => handleClick()}
+          className="botao-login btn btn-primary mb-3"
           type="button"
-          disabled={ disable }
+          disabled={disable}
         >
           LOGIN
         </button>
       </form>
+
       <button
-        onClick={ () => navigate('/register') }
+        className="botao-login btn btn-outline-secondary mb-3"
+        onClick={() => navigate("/register")}
         type="button"
       >
         Ainda não tenho conta
       </button>
-      {!logged
-      && <p>Usuário inválido</p>}
+      {!logged && (
+        <div className="alert alert-warning" role="alert">
+          {" "}
+          {errorMessage}{" "}
+        </div>
+      )}
     </>
   );
 }
