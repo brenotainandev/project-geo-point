@@ -4,7 +4,7 @@ body {
 }
 
 .form-signin {
-  max-width: 330px;
+  max-width: 500px;
   padding: 15px;
 }
 
@@ -28,6 +28,6 @@ body {
   margin-top: 40px;
 }
 
-.botao-login {
+.botao-register {
   width: 60%;
 }

@@ -64,7 +64,7 @@ function LoginForm() {
             className="input-email form-control"
             onChange={({ target: { value } }) => setEmail(value)}
           />
-          <label htmlFor="email-login">Usuario</label>
+          <label htmlFor="email-login">Email</label>
         </div>
 
         <div className="form-floating mb-3">
@@ -90,7 +90,7 @@ function LoginForm() {
       </form>
 
       <button
-        className="botao-login btn btn-outline-secondary mb-3"
+        className="btn btn-outline-secondary mb-3"
         onClick={() => navigate("/register")}
         type="button"
       >
