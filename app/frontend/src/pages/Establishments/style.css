@@ -1,0 +1,15 @@
+.map-container {
+  height: 500px;
+}
+
+.leaflet-container {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-interactive {
+  z-index: 1000;
+}
